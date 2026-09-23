@@ -8,7 +8,11 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-origins = ["*"]
+origins = [
+    "https://final-frontend-pearl.vercel.app",
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
