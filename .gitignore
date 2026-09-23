@@ -1,0 +1,32 @@
+# Virtual environment
+.venv/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Pytest files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
+
+# macOS system files
+.DS_Store
+
+# VS Code personal settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# Log files
+*.log
