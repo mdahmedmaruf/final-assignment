@@ -57,11 +57,11 @@ def create_parcel(
         description=parcel_data.description,
         weight_kg=parcel_data.weight_kg,
         status=ParcelStatus.PENDING,
+        sender=current_user,
     )
 
     db.add(new_parcel)
     db.commit()
-    db.refresh(new_parcel)
 
     return new_parcel
 
@@ -89,7 +89,6 @@ def approve_parcel(parcel_id: int, db: db_dependency, current_user: user_depende
 
     setattr(parcel, "status", ParcelStatus.APPROVED)
     db.commit()
-    db.refresh(parcel)
 
     return parcel
 
@@ -130,7 +129,6 @@ def assign_rider(
     setattr(parcel, "status", ParcelStatus.ASSIGNED)
 
     db.commit()
-    db.refresh(parcel)
 
     return parcel
 
@@ -177,6 +175,5 @@ def update_parcel_status(
     setattr(parcel, "status", status_data.status)
 
     db.commit()
-    db.refresh(parcel)
 
     return parcel

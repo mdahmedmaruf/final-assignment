@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
 from models import ParcelStatus, UserRole
 
@@ -23,6 +23,8 @@ class UserUpdate(BaseModel):
 
 
 class UserResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     full_name: str
     email: str
@@ -54,7 +56,17 @@ class ParcelStatusUpdate(BaseModel):
     status: ParcelStatus
 
 
+class SenderResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: int
+    full_name: str
+    phone: str
+
+
 class ParcelResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
     tracking_number: str
     sender_id: int
@@ -67,3 +79,4 @@ class ParcelResponse(BaseModel):
     assigned_rider_id: Optional[int]
     created_at: datetime
     updated_at: datetime
+    sender: Optional[SenderResponse] = None

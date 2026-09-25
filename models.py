@@ -65,8 +65,8 @@ class Parcel(Base):
 
     assigned_rider_id = Column(Integer, ForeignKey("users.id"), nullable=True)
 
-    sender = relationship("User", foreign_keys=[sender_id])
-    rider = relationship("User", foreign_keys=[assigned_rider_id])
+    sender = relationship("User", foreign_keys=[sender_id], lazy="joined")
+    rider = relationship("User", foreign_keys=[assigned_rider_id], lazy="joined")
 
     created_at = Column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
